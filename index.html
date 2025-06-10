@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="GovReportApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Company Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="LoginController">
+
+  <div class="login-container">
+    <h2 class="text-center mb-4">Company Portal</h2>
+
+    <div class="card p-4 shadow-sm">
+      <h4 class="mb-3">Login</h4>
+      
+      <form ng-submit="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" ng-model="user.email" required />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" ng-model="user.password" required />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Log in</button>
+        <div class="mt-3 text-center">
+          <a href="#">Forgot password?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
