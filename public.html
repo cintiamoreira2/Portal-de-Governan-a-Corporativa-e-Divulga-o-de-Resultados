@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="GovReportApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>Consulta Pública de Documentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="ConsultaPublicaController">
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Consulta Pública de Documentos</h2>
+
+    <div class="card p-4 shadow-sm mb-4">
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Tipo de Documento</label>
+          <select class="form-select" ng-model="filtro.tipo">
+            <option value="">Todos</option>
+            <option>Formulário de Referência</option>
+            <option>DFP</option>
+            <option>ITR</option>
+            <option>Fato Relevante</option>
+            <option>Comunicado ao Mercado</option>
+          </select>
+        </div>
+        <div class="col-md-8">
+          <label class="form-label">Buscar por Título</label>
+          <input type="text" class="form-control" placeholder="Digite parte do título..." ng-model="filtro.titulo">
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-4 shadow-sm">
+      <h5 class="mb-3">Documentos Disponíveis</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Título</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documentosFiltrados()">
+            <td>{{doc.tipo}}</td>
+            <td>{{doc.titulo}}</td>
+            <td>{{doc.data | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>
+              <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+            </td>
+          </tr>
+          <tr ng-if="documentosFiltrados().length === 0">
+            <td colspan="4" class="text-center text-muted">Nenhum documento encontrado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
