@@ -21,6 +21,8 @@ angular.module('GovReportApp', [])
     }
   };
 }])
+
+
 .controller('UploadController', ['$scope', function($scope) {
   $scope.doc = {};
   $scope.documentos = [];
@@ -39,5 +41,35 @@ angular.module('GovReportApp', [])
       $scope.doc = {};
       document.querySelector('input[type="file"]').value = null;
     }
+  };
+}]);
+.controller('ConsultaPublicaController', ['$scope', function($scope) {
+  $scope.filtro = { tipo: '', titulo: '' };
+
+  // Simulação de dados que normalmente viriam do backend
+  $scope.documentos = [
+    {
+      tipo: 'Formulário de Referência',
+      titulo: '2024 - Atualização Anual',
+      data: new Date('2024-04-20T14:30:00')
+    },
+    {
+      tipo: 'Fato Relevante',
+      titulo: 'Aquisição de Subsidiária XYZ',
+      data: new Date('2024-06-01T09:15:00')
+    },
+    {
+      tipo: 'DFP',
+      titulo: 'Demonstrações Financeiras 2023',
+      data: new Date('2024-03-15T16:00:00')
+    }
+  ];
+
+  $scope.documentosFiltrados = function() {
+    return $scope.documentos.filter(function(doc) {
+      const tipoOK = !$scope.filtro.tipo || doc.tipo === $scope.filtro.tipo;
+      const tituloOK = !$scope.filtro.titulo || doc.titulo.toLowerCase().includes($scope.filtro.titulo.toLowerCase());
+      return tipoOK && tituloOK;
+    });
   };
 }]);
